@@ -1,13 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kevin.drift.MainActivity">
+    android:background="@color/colorWhite"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    
-</RelativeLayout>
+    >
+
+    <ImageView
+        android:id="@+id/id_userIcon_imgv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/user_login_icon_bg"
+        app:layout_heightPercent="15%"
+        app:layout_marginLeftPercent="38%"
+        app:layout_marginTopPercent="10%"
+        app:layout_widthPercent="24%" />
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/id_userAccount"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/id_userIcon_imgv"
+        android:background="#FFFFFFFF"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="5%">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/login_user_account"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/login_text_size"
+            app:layout_paddingLeftPercent="5%"
+            app:layout_widthPercent="25%" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#FFFFFFFF"
+            android:hint="@string/hint_user_account"
+            android:textColor="@color/colorHint"
+            app:layout_widthPercent="65%" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_widthPercent="10%"
+            android:layout_gravity="center"
+            android:src="@mipmap/clear_btn_normal"
+            android:contentDescription="@null"
+            android:visibility="invisible"
+            />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/id_userAccount"
+        android:background="#FFFFFFFF"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="1%">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/login_password"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/login_text_size"
+            app:layout_paddingLeftPercent="5%"
+            app:layout_widthPercent="25%" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="#FFFFFFFF"
+            android:hint="@string/hint_password"
+            android:textColor="@color/colorHint"
+            android:inputType="textPassword"
+            app:layout_widthPercent="65%" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_widthPercent="10%"
+            android:layout_gravity="center"
+            android:src="@mipmap/clear_btn_normal"
+            android:contentDescription="@null"
+            android:visibility="invisible"
+            />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</com.zhy.android.percent.support.PercentRelativeLayout>
