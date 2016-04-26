@@ -7,4 +7,5 @@
     <color name="colorHint">#616161</color>
     <color name="colorBlack">#000000</color>
     <color name="loginEditText">#ffffff</color>
+    <color name="loginButton">#4999fc</color>
 </resources>

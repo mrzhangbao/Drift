@@ -12,10 +12,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/user_login_icon_bg"
-        app:layout_heightPercent="15%"
+        app:layout_heightPercent="18%"
         app:layout_marginLeftPercent="38%"
         app:layout_marginTopPercent="10%"
-        app:layout_widthPercent="24%" />
+        app:layout_widthPercent="30%"
+        android:contentDescription="@null"
+        />
 
     <com.zhy.android.percent.support.PercentLinearLayout
         android:id="@+id/id_userAccount"
@@ -24,7 +26,7 @@
         android:layout_below="@+id/id_userIcon_imgv"
         android:background="#FFFFFFFF"
         app:layout_heightPercent="10%"
-        app:layout_marginTopPercent="5%">
+        app:layout_marginTopPercent="8%">
 
         <TextView
             android:layout_width="0dp"
@@ -37,6 +39,7 @@
             app:layout_widthPercent="25%" />
 
         <EditText
+            android:id="@+id/id_account_et"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="#FFFFFFFF"
@@ -44,6 +47,7 @@
             android:textColor="@color/colorHint"
             app:layout_widthPercent="65%" />
         <ImageView
+            android:id="@+id/id_clear_account"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_widthPercent="10%"
@@ -56,6 +60,7 @@
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/id_password_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@+id/id_userAccount"
@@ -74,6 +79,7 @@
             app:layout_widthPercent="25%" />
 
         <EditText
+            android:id="@+id/id_password_et"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="#FFFFFFFF"
@@ -82,6 +88,7 @@
             android:inputType="textPassword"
             app:layout_widthPercent="65%" />
         <ImageView
+            android:id="@+id/id_clear_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_widthPercent="10%"
@@ -92,5 +99,26 @@
             />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <Button
+        android:id="@+id/id_login_bt"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="7%"
+        app:layout_marginTopPercent="5%"
+        app:layout_marginLeftPercent="3%"
+        app:layout_marginRightPercent="3%"
+        android:text="@string/login_button"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:layout_below="@+id/id_password_layout"
+        android:background="@drawable/login_button_bg"
+        />
+    <include layout="@layout/user_login_otherway"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="35%"
+        app:layout_marginTopPercent="10%"
+        android:layout_below="@id/id_login_bt"/>
 
 </com.zhy.android.percent.support.PercentRelativeLayout>
