@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    android:background="#fdfdfd"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#fdfdfd"
+        android:orientation="horizontal"
+        app:layout_heightPercent="20%"
+        app:layout_marginPercent="4%">
+
+        <ImageView
+            android:id="@+id/id_drift_userIcon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/start_icon"
+            app:layout_paddingPercent="2%"
+            app:layout_widthPercent="20%" />
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_widthPercent="50%">
+
+            <TextView
+                android:id="@+id/id_drift_userName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical"
+                android:text="用户昵称"
+                app:layout_heightPercent="50%" />
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_heightPercent="50%">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/compose_locatebutton_ready"
+                    app:layout_widthPercent="20%" />
+
+                <TextView
+                    android:id="@+id/id_drift_address"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="3dp"
+                    android:text="惠州"
+                    app:layout_widthPercent="80%" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <TextView
+            android:id="@+id/id_drift_sendTime"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:text="3分钟前"
+            app:layout_marginLeftPercent="2%"
+            app:layout_widthPercent="20%" />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="70%"
+        app:layout_paddingLeftPercent="4%"
+        app:layout_paddingRightPercent="4%">
+
+        <ImageView
+            android:id="@+id/id_drift_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/start_icon" />
+
+        <TextView
+            android:id="@+id/id_drift_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="我是一条大写的测试数据，你知道么，我其实很无聊的"
+            android:textColor="@color/colorWhite"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>
