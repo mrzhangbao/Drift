@@ -7,11 +7,10 @@ import com.kevin.drift.R;
 /**
  * Created by Benson_Tom on 2016/4/22.
  */
-public class WorldFragment extends BaseFragment{
-
+public class FriendsFragment extends BaseFragment{
     @Override
     protected int setLayout() {
-        return R.layout.fragment_world;
+        return R.layout.fragment_friends;
     }
 
     @Override

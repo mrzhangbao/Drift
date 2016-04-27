@@ -2,88 +2,106 @@
 <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="66dp"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@color/buttomTabColor"
     >
 
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/id_tabBarWorld"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_widthPercent="25%">
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/id_tabBarWorld_img"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:src="@mipmap/tabbar_home"
-            app:layout_heightPercent="75%" />
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:background="@mipmap/tabbar_worlds"
+             />
 
         <TextView
+            android:id="@+id/id_tabBarWorld_tv"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:text="@string/home"
-            app:layout_heightPercent="25%" />
+             />
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/id_tabBarFriends"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_widthPercent="25%">
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/id_tabBarFriends_img"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:src="@mipmap/tabbar_contact"
-            app:layout_heightPercent="75%" />
+            android:layout_height="wrap_content"
+            android:background="@mipmap/tabbar_friends"
+            android:clickable="false"
+             />
 
         <TextView
+            android:id="@+id/id_tabBarFriends_tv"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
             android:text="@string/contacts"
-            app:layout_heightPercent="25%" />
+             />
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/id_tabBarMessage"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_widthPercent="25%">
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/id_tabBarMessage_img"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:src="@mipmap/tabbar_message_center"
-            app:layout_heightPercent="75%" />
+            android:layout_height="wrap_content"
+            android:background="@mipmap/tabbar_message_center"
+            android:clickable="false"
+             />
 
         <TextView
+            android:id="@+id/id_tabBarMessage_tv"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:text="@string/message"
-            app:layout_heightPercent="25%" />
+            />
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/id_tabBarProfile"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_widthPercent="25%">
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/id_tabBarProfile_img"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:src="@mipmap/tabbar_profile"
-            app:layout_heightPercent="75%" />
+            android:layout_height="wrap_content"
+            android:background="@mipmap/tabbar_profile"
+            android:clickable="false"
+             />
 
         <TextView
+            android:id="@+id/id_tabBarProfile_tv"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:text="@string/myself"
-            app:layout_heightPercent="25%" />
+             />
     </com.zhy.android.percent.support.PercentLinearLayout>
 
 

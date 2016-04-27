@@ -5,13 +5,12 @@ import android.view.View;
 import com.kevin.drift.R;
 
 /**
- * Created by Benson_Tom on 2016/4/22.
+ * Created by Benson_Tom on 2016/4/27.
  */
-public class WorldFragment extends BaseFragment{
-
+public class MessageFragment extends BaseFragment{
     @Override
     protected int setLayout() {
-        return R.layout.fragment_world;
+        return R.layout.fragment_message;
     }
 
     @Override
