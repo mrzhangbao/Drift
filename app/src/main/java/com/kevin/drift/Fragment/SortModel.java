@@ -1,9 +1,9 @@
-package com.kevin.drift.Entity;
+package com.kevin.drift.Fragment;
 
 /**
  * Created by Benson_Tom on 2016/4/3.
  */
-public class FriendsEntity {
+public class SortModel {
 
     /**
      * 联系人实体类

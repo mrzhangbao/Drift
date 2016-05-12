@@ -14,7 +14,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kevin.drift.Entity.FriendsEntity;
+import com.kevin.drift.Fragment.SortModel;
 import com.kevin.drift.R;
 
 import java.util.List;
@@ -25,11 +25,11 @@ import java.util.Random;
  */
 public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
 
-    private List<FriendsEntity> mList;
+    private List<SortModel> mList;
     private Context mContext;
 
 
-    public FriendsAdapter(List<FriendsEntity> friendsEntities, Context context) {
+    public FriendsAdapter(List<SortModel> friendsEntities, Context context) {
         mList = friendsEntities;
         mContext = context;
     }
@@ -52,7 +52,7 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
-        final FriendsEntity mContent = mList.get(i);
+        final SortModel mContent = mList.get(i);
         if (view == null) {
             viewHolder = new ViewHolder();
             view = LayoutInflater.from(mContext).inflate(R.layout.datesort_item, null);
@@ -100,7 +100,7 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
      *
      * @param list
      */
-    public void updateListView(List<FriendsEntity> list) {
+    public void updateListView(List<SortModel> list) {
         mList = list;
         notifyDataSetChanged();
 

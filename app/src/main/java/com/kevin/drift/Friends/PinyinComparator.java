@@ -1,6 +1,6 @@
 package com.kevin.drift.Friends;
 
-import com.kevin.drift.Entity.FriendsEntity;
+import com.kevin.drift.Fragment.SortModel;
 
 import java.util.Comparator;
 
@@ -9,9 +9,9 @@ import java.util.Comparator;
  * 这个类主要是用来对ListView中的数据根据A-Z进行排序，前面的两个if判断主要是将不是以
  * 汉字开头的数据放在后面
  */
-public class PinyinComparator implements Comparator<FriendsEntity>{
+public class PinyinComparator implements Comparator<SortModel>{
     @Override
-    public int compare(FriendsEntity s1, FriendsEntity s2) {
+    public int compare(SortModel s1, SortModel s2) {
         if (s2.getUserFirstLetter().equals("#")|| s2.getUserFirstLetter().equals("@"))
         {
             return  -1;

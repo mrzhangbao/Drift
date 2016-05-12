@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.promeg.pinyinhelper.Pinyin;
-import com.kevin.drift.Entity.FriendsEntity;
 import com.kevin.drift.Friends.ClearEditText;
 import com.kevin.drift.Friends.PinyinComparator;
 import com.kevin.drift.Friends.SideBar;
@@ -33,7 +32,7 @@ public class FriendsFragment extends BaseFragment{
     private TextView mDialog;
     private FriendsAdapter mAdapter;
 
-    private List<FriendsEntity> mList;
+    private List<SortModel> mList;
     private View headerView;
 
     private View mGroupChat;
@@ -159,11 +158,11 @@ public class FriendsFragment extends BaseFragment{
      * 为ListView填充数据
      * date
      */
-    private List<FriendsEntity> filledDate(String[] date) {
-        List<FriendsEntity> mSortList = new ArrayList<>();
+    private List<SortModel> filledDate(String[] date) {
+        List<SortModel> mSortList = new ArrayList<>();
 
         for (int i = 0; i < date.length; i++) {
-            FriendsEntity friendsEntity = new FriendsEntity();
+            SortModel friendsEntity = new SortModel();
             friendsEntity.setUsername(date[i]);
             //汉字转换成拼音,截取拼音字母
             char[] chars = date[i].toCharArray();
@@ -182,12 +181,12 @@ public class FriendsFragment extends BaseFragment{
     }
     //用于将查询的数据进行重新排序
     private void filterData(String filterStr) {
-        List<FriendsEntity> filterDataList = new ArrayList<>();
+        List<SortModel> filterDataList = new ArrayList<>();
         if (TextUtils.isEmpty(filterStr)) {
             filterDataList = mList;
         } else {
             filterDataList.clear();
-            for (FriendsEntity friendsEntity : mList) {
+            for (SortModel friendsEntity : mList) {
                 String userName = friendsEntity.getUsername();
                 char[] c  = userName.toCharArray();
                 //先判断字符串是否为英文，是的话直接导入，不是因为，则将字符转换成拼音，并换成大写进行比较，
