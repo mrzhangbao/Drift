@@ -17,6 +17,7 @@ import com.kevin.drift.Fragment.FriendsFragment;
 import com.kevin.drift.Fragment.MessageFragment;
 import com.kevin.drift.Fragment.ProFileFragment;
 import com.kevin.drift.Fragment.WorldFragment;
+import com.kevin.drift.PopWindow.MoreWindow;
 import com.kevin.drift.R;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
@@ -48,6 +49,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment mProfileFragment;
 
     private ImageButton mImgBtAdd;
+    private MoreWindow mMoreWindow;
 
 
     @Override
@@ -61,7 +63,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
 
     private void initWidget() {
         /**
@@ -77,6 +78,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mImgBtMessage = (ImageButton) this.findViewById(R.id.id_tabBarMessage_img);
         mImgBtProfile = (ImageButton) this.findViewById(R.id.id_tabBarProfile_img);
         mImgBtAdd = (ImageButton) this.findViewById(R.id.id_tabBarAdd_img);
+
+        mImgBtAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMoreWindow(view);
+            }
+        });
 
 
 
@@ -229,18 +237,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.id_tabBarWorld:
                 setSelect(0);
-                Log.i(TAG,"点击了");
                 break;
             case R.id.id_tabBarFriends:
                 setSelect(1);
-                Log.i(TAG,"点击了");
                 break;
             case R.id.id_tabBarMessage:
-                Log.i(TAG,"点击了");
                 setSelect(2);
                 break;
             case R.id.id_tabBarProfile:
-                Log.i(TAG,"点击了");
                 setSelect(3);
                 break;
             default:
@@ -248,6 +252,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+    private void showMoreWindow(View view) {
+        if (null == mMoreWindow) {
+            mMoreWindow = new MoreWindow(this);
+            mMoreWindow.init();
+        }
+
+        mMoreWindow.showMoreWindow(view,100);
+    }
+
     private void setOverflowShowingAlways() {
         try {
             ViewConfiguration config = ViewConfiguration.get(this);

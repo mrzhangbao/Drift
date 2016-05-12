@@ -61,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 LoginActivity.this.startActivity(intent);
+                //使用Activity过度动画
+                overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
             }
         });
 
@@ -69,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(intent);
+                //使用Activity过度动画
+                overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
             }
         });
 

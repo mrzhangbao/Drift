@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/id_menu_widow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_marginTopPercent="13%"
+        >
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_heightPercent="20%">
+
+            <TextView
+                android:id="@+id/window_menu_friend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_friend"
+                android:gravity="center_horizontal"
+                android:text="好友"
+                app:layout_widthPercent="30%" />
+
+
+
+            <TextView
+                android:id="@+id/window_menu_camera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_camera"
+                android:gravity="center_horizontal"
+                android:text="相机"
+                app:layout_widthPercent="30%" />
+            <TextView
+                android:id="@+id/window_menu_music"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_music"
+                android:gravity="center_horizontal"
+                android:text="音乐"
+                app:layout_widthPercent="30%" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_marginTopPercent="5%"
+            app:layout_heightPercent="20%">
+
+            <TextView
+                android:id="@+id/window_menu_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_idea"
+                android:gravity="center_horizontal"
+                android:text="文字"
+                app:layout_widthPercent="30%" />
+
+            <TextView
+                android:id="@+id/window_menu_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_headlines"
+                android:gravity="center_horizontal"
+                android:text="头条"
+                app:layout_widthPercent="30%" />
+
+
+            <TextView
+                android:id="@+id/window_menu_photo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_photo"
+                android:gravity="center_horizontal"
+                android:text="照片"
+                app:layout_widthPercent="30%" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_marginTopPercent="5%"
+            app:layout_heightPercent="20%">
+
+            <TextView
+                android:id="@+id/window_menu_video"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_shooting"
+                android:gravity="center_horizontal"
+                android:text="视频"
+                app:layout_widthPercent="30%" />
+
+            <TextView
+                android:id="@+id/window_menu_redpacket"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_redpacket"
+                android:gravity="center_horizontal"
+                android:text="红包"
+                app:layout_widthPercent="30%" />
+
+            <TextView
+                android:id="@+id/window_menu_wallet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@mipmap/tabbar_compose_transfer"
+                android:gravity="center_horizontal"
+                android:text="钱包"
+                app:layout_widthPercent="30%" />
+
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    <include
+        android:id="@+id/window_menu_close_layout"
+        layout="@layout/window_menu_close"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_marginLeftPercent="43%"
+        app:layout_marginBottomPercent="6%"
+        />
+
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

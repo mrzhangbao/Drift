@@ -77,7 +77,6 @@ public class FriendsFragment extends BaseFragment{
                 if (position != -1) {
                     mListView.setSelection(position);
                 }
-
             }
         });
         mListView = (ListView) v.findViewById(R.id.id_content_listView);
@@ -153,7 +152,6 @@ public class FriendsFragment extends BaseFragment{
         });
 
     }
-
     /**
      * 为ListView填充数据
      * date
