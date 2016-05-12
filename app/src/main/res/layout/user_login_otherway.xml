@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/other_login_qq"
         app:layout_widthPercent="15%"
-        app:layout_marginLeftPercent="3%"
+        app:layout_marginLeftPercent="10%"
         />
 
     <Button
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/other_login_weibo"
         app:layout_widthPercent="15%"
-        app:layout_marginLeftPercent="3%"
+        app:layout_marginLeftPercent="10%"
         />
 
     <Button
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/other_login_weixin"
         app:layout_widthPercent="15%"
-        app:layout_marginLeftPercent="3%"
+        app:layout_marginLeftPercent="10%"
         />
 
 </com.zhy.android.percent.support.PercentLinearLayout>

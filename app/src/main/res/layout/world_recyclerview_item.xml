@@ -2,33 +2,44 @@
 <com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="320dp"
-    android:background="#fdfdfd"
+    android:layout_height="380dp"
     android:orientation="vertical">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_marginTopPercent="3%"
+        app:layout_marginLeftPercent="3%"
+        app:layout_marginRightPercent="3%"
+        android:background="@drawable/world_message_item_bg"
+        android:orientation="vertical"
+        >
 
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#fdfdfd"
         android:orientation="horizontal"
-        app:layout_heightPercent="20%"
-        app:layout_marginPercent="4%">
+        app:layout_heightPercent="15%"
+        app:layout_marginLeftPercent="4%"
+        app:layout_marginRightPercent="4%"
+        app:layout_marginTopPercent="4%"
+        >
 
         <ImageView
             android:id="@+id/id_drift_userIcon"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/start_icon"
+            android:src="@drawable/ceshi01"
             app:layout_paddingPercent="2%"
-            app:layout_widthPercent="20%" />
+            app:layout_widthPercent="17%" />
 
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_widthPercent="50%">
-
             <TextView
                 android:id="@+id/id_drift_userName"
                 android:layout_width="match_parent"
@@ -68,7 +79,7 @@
             android:layout_height="match_parent"
             android:gravity="end|center_vertical"
             android:text="3分钟前"
-            app:layout_marginLeftPercent="2%"
+            app:layout_marginLeftPercent="4%"
             app:layout_widthPercent="20%" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
@@ -85,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/start_icon" />
+            android:src="@drawable/ceshi02" />
 
         <TextView
             android:id="@+id/id_drift_text"
@@ -93,11 +104,18 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="我是一条大写的测试数据，你知道么，我其实很无聊的"
-            android:textColor="@color/colorWhite"
-            android:textSize="32sp"
+            android:textColor="@color/driftContentColor"
+            android:textSize="@dimen/driftContentTextSize"
             android:textStyle="bold" />
+
 
     </com.zhy.android.percent.support.PercentRelativeLayout>
 
+    <include layout="@layout/item_world_recycler_bottom"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        app:layout_heightPercent="15%"
+        />
+    </com.zhy.android.percent.support.PercentLinearLayout>
 
 </com.zhy.android.percent.support.PercentLinearLayout>

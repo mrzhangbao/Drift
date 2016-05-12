@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_widthPercent="25%">
+        app:layout_widthPercent="20%">
 
         <ImageButton
             android:id="@+id/id_tabBarWorld_img"
@@ -37,7 +37,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_widthPercent="25%">
+        app:layout_widthPercent="20%">
 
         <ImageButton
             android:id="@+id/id_tabBarFriends_img"
@@ -57,12 +57,30 @@
     </com.zhy.android.percent.support.PercentLinearLayout>
 
     <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/id_tabBarAdd"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_widthPercent="20%">
+
+        <ImageButton
+            android:id="@+id/id_tabBarAdd_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/tabbar_add"
+            android:clickable="false"
+            />
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
         android:id="@+id/id_tabBarMessage"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_widthPercent="25%">
+        app:layout_widthPercent="20%">
 
         <ImageButton
             android:id="@+id/id_tabBarMessage_img"
@@ -86,7 +104,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_widthPercent="25%">
+        app:layout_widthPercent="20%">
 
         <ImageButton
             android:id="@+id/id_tabBarProfile_img"

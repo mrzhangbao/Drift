@@ -3,20 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-
-    >
+    android:background="@color/colorWhite">
 
     <ImageView
         android:id="@+id/id_userIcon_imgv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_heightPercent="22%"
-        app:layout_marginLeftPercent="38%"
-        app:layout_marginTopPercent="6%"
-        app:layout_widthPercent="35%"
         android:contentDescription="@null"
-        />
+        app:layout_heightPercent="30%"
+        app:layout_marginLeftPercent="38%"
+        app:layout_marginTopPercent="5%"
+        app:layout_widthPercent="45%" />
 
     <com.zhy.android.percent.support.PercentLinearLayout
         android:id="@+id/id_userAccount"
@@ -25,7 +22,7 @@
         android:layout_below="@+id/id_userIcon_imgv"
         android:background="#FFFFFFFF"
         app:layout_heightPercent="10%"
-        app:layout_marginTopPercent="8%">
+        app:layout_marginTopPercent="5%">
 
         <TextView
             android:layout_width="0dp"
@@ -73,8 +70,8 @@
             android:layout_height="match_parent"
             android:background="#FFFFFFFF"
             android:hint="@string/hint_password"
-            android:textColor="@color/colorHint"
             android:inputType="textPassword"
+            android:textColor="@color/colorHint"
             app:layout_widthPercent="65%" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
@@ -83,21 +80,34 @@
         android:id="@+id/id_login_bt"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_heightPercent="7%"
-        app:layout_marginTopPercent="5%"
-        app:layout_marginLeftPercent="3%"
-        app:layout_marginRightPercent="3%"
+        android:layout_below="@+id/id_password_layout"
+        android:background="@drawable/login_button_bg"
         android:text="@string/login_button"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
-        android:layout_below="@+id/id_password_layout"
-        android:background="@drawable/login_button_bg"
+        app:layout_heightPercent="7%"
+        app:layout_marginLeftPercent="3%"
+        app:layout_marginRightPercent="3%"
+        app:layout_marginTopPercent="5%" />
+
+    <Button
+        android:id="@+id/id_register_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_login_bt"
+        android:layout_centerInParent="true"
+        android:textColor="@color/loginButton"
+        android:background="@null"
+        app:layout_marginRightPercent="5%"
+        android:text="立即注册"
         />
-    <include layout="@layout/user_login_otherway"
+
+    <include
+        layout="@layout/user_login_otherway"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_below="@id/id_login_bt"
         app:layout_heightPercent="35%"
-        app:layout_marginTopPercent="10%"
-        android:layout_below="@id/id_login_bt"/>
+        app:layout_marginTopPercent="10%" />
 
 </com.zhy.android.percent.support.PercentRelativeLayout>

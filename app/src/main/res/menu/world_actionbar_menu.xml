@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/action_attentionDrift"
+        android:icon="@mipmap/userinfo_me_relationship_indicator_meyou"
+        app:showAsAction="always"
+        android:title="@string/actionbar_attentionDrift"
+        />
+
+    <item
+        android:id="@+id/action_sendDrift"
+        android:icon="@mipmap/userinfo_me_relationship_indicator_plus"
+        app:showAsAction="always"
+        android:title="@string/actionbar_sendDrift"
+        />
+
+
+</menu>

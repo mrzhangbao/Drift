@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/id_sortTitle_tv"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        app:layout_paddingLeftPercent="6%"
+        app:layout_paddingTopPercent="1%"
+        app:layout_paddingBottomPercent="1%"
+
+        />
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@drawable/listview_headerview_item"
+        >
+
+        <TextView
+            android:id="@+id/id_userIcon_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:background="@mipmap/common_slider_controler"
+            app:layout_widthPercent="18%"
+            />
+
+    <TextView
+        android:id="@+id/id_sortContent_tv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="start|center"
+        android:paddingTop="5dp"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="5dp"
+        android:textColor="#62d3f5"
+        app:layout_widthPercent="48%"
+        />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</com.zhy.android.percent.support.PercentLinearLayout>

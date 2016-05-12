@@ -9,4 +9,6 @@
     <color name="loginEditText">#ffffff</color>
     <color name="buttomTabColor">#ffffffff</color>
     <color name="loginButton">#4999fc</color>
+    <color name="driftContentColor">#FFFFFF</color>
+    <color name="colorPress">#8dc0ff</color>
 </resources>

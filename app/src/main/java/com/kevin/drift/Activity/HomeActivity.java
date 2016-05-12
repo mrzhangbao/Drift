@@ -1,19 +1,15 @@
 package com.kevin.drift.Activity;
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -23,6 +19,8 @@ import com.kevin.drift.Fragment.ProFileFragment;
 import com.kevin.drift.Fragment.WorldFragment;
 import com.kevin.drift.R;
 import com.zhy.android.percent.support.PercentLinearLayout;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by Benson_Tom on 2016/4/27.
@@ -49,15 +47,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment mMessageFragment;
     private Fragment mProfileFragment;
 
+    private ImageButton mImgBtAdd;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
-        Log.i(TAG,"comming");
+        setOverflowShowingAlways();
         initWidget();
         initEvent();
         setSelect(0);
+
+
     }
 
 
@@ -74,11 +76,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mImgBtFriends = (ImageButton) this.findViewById(R.id.id_tabBarFriends_img);
         mImgBtMessage = (ImageButton) this.findViewById(R.id.id_tabBarMessage_img);
         mImgBtProfile = (ImageButton) this.findViewById(R.id.id_tabBarProfile_img);
+        mImgBtAdd = (ImageButton) this.findViewById(R.id.id_tabBarAdd_img);
+
+
 
         mTabTextWorld = (TextView) this.findViewById(R.id.id_tabBarWorld_tv);
         mTabTextFriends = (TextView) this.findViewById(R.id.id_tabBarFriends_tv);
         mTabTextMessage = (TextView) this.findViewById(R.id.id_tabBarMessage_tv);
         mTabTextProfile = (TextView) this.findViewById(R.id.id_tabBarProfile_tv);
+
 
     }
 
@@ -141,6 +147,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     transaction.add(R.id.id_frameLayout, mMessageFragment);
                 }else {
                     transaction.show(mMessageFragment);
+
                 }
                 mImgBtMessage.setImageResource(R.mipmap.tabbar_message_center_highlighted);
                 mTabTextMessage.setTextColor(Color.parseColor("#FF8E29"));
@@ -241,4 +248,16 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+    private void setOverflowShowingAlways() {
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class
+                    .getDeclaredField("sHasPermanentMenuKey");
+            menuKeyField.setAccessible(true);
+            menuKeyField.setBoolean(config, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

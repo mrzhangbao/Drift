@@ -14,15 +14,18 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kevin.drift.Activity.HomeActivity;
+import com.kevin.drift.Activity.RegisterActivity;
 import com.kevin.drift.Utils.ToRoundBitmap;
 
 
 public class LoginActivity extends AppCompatActivity {
     private long exitTime = 0;
     private Button mLoginButton;
+    private Button mRegister;
     private EditText mAccountEt;
     private EditText mPasswordEt;
     private ImageView mUserIconImg;
+
 
 
     @Override
@@ -39,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initWidget() {
         mUserIconImg = (ImageView) this.findViewById(R.id.id_userIcon_imgv);
         mLoginButton = (Button) this.findViewById(R.id.id_login_bt);
+        mRegister = (Button) this.findViewById(R.id.id_register_bt);
         mPasswordEt = (EditText) this.findViewById(R.id.id_password_et);
         mAccountEt = (EditText) this.findViewById(R.id.id_account_et);
 
@@ -47,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
          * 调用ToRoundBitmap方法，将图片圆形化
          * 将修改的图片显示
          */
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.start_icon);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ceshi01);
         mUserIconImg.setImageBitmap(new ToRoundBitmap().toRoundBitmap(bitmap));
     }
 
@@ -56,6 +60,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                LoginActivity.this.startActivity(intent);
+            }
+        });
+
+        mRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(intent);
             }
         });

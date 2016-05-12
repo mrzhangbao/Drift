@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="#ffffff"/>
+    <corners
+        android:topLeftRadius="@dimen/world_recycler_view_item_corners"
+        android:topRightRadius="@dimen/world_recycler_view_item_corners"
+        android:bottomLeftRadius="@dimen/world_recycler_view_item_corners"
+        android:bottomRightRadius="@dimen/world_recycler_view_item_corners"
+        />
+</shape>

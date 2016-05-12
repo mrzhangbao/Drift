@@ -8,15 +8,15 @@
         android:id="@+id/id_frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_heightPercent="88%"
-        android:background="#5defc6"
+        app:layout_heightPercent="91%"
+        android:background="#ffffff"
         >
     </com.zhy.android.percent.support.PercentFrameLayout>
 
     <include layout="@layout/home_buttom_tabbar"
         android:layout_height="0dp"
         android:layout_width="match_parent"
-        app:layout_heightPercent="12%"
+        app:layout_heightPercent="9%"
         />
 
 

@@ -3,4 +3,53 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.kevin.drift.Friends.ClearEditText
+        android:id="@+id/id_search_clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:hint="请输入关键字"
+        android:drawableLeft="@mipmap/ic_search_api_holo_light"
+        android:drawableRight="@mipmap/ic_clear_search_api_holo_light"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@null"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <ListView
+            android:id="@+id/id_content_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            >
+        </ListView>
+
+        <TextView
+            android:id="@+id/id_dialog_textView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:background="#5fef94"
+            android:layout_gravity="center"
+            android:textSize="30sp"
+            android:visibility="invisible"
+            />
+
+        <com.kevin.drift.Friends.SideBar
+            android:id="@+id/id_sideBar_CustomView"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:background="#00000000"
+            />
+
+    </FrameLayout>
+
 </LinearLayout>

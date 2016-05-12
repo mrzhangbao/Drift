@@ -10,4 +10,12 @@
     <string name="contacts">好友</string>
     <string name="message">聊天</string>
     <string name="myself">我</string>
+
+    <string name="actionbar_sendDrift">发漂流</string>
+    <string name="actionbar_attentionDrift">关注</string>
+
+    <string name="register_username">UserName</string>
+    <string name="register_password">Password</string>
+    <string name="register_phone">Mobile Phone</string>
+    <string name="register">注册</string>
 </resources>
