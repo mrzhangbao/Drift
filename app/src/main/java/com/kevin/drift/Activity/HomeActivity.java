@@ -1,6 +1,7 @@
 package com.kevin.drift.Activity;
 
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,14 +14,20 @@ import android.view.ViewConfiguration;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.kevin.drift.Entity.RegisterEntity;
+import com.kevin.drift.Entity.User;
 import com.kevin.drift.Fragment.FriendsFragment;
 import com.kevin.drift.Fragment.MessageFragment;
 import com.kevin.drift.Fragment.ProFileFragment;
 import com.kevin.drift.Fragment.WorldFragment;
 import com.kevin.drift.PopWindow.MoreWindow;
 import com.kevin.drift.R;
+import com.kevin.drift.Utils.OkHttpManager;
+import com.kevin.drift.Utils.URLManager;
 import com.zhy.android.percent.support.PercentLinearLayout;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 /**
@@ -60,6 +67,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         initWidget();
         initEvent();
         setSelect(0);
+        //SQLite数据查询
+//        DBUserManager manager = new DBUserManager(this);
+//        for (int i =0;i<5;i++){
+//            Log.i(TAG,"主页查询："+manager.query());
+//        }
+//        new LoginAsyncTask(userAccount,password).execute(URLManager.GET_MESSAGE);
+//        new DriftAsyncTask().execute("");
+
 
 
     }
@@ -272,5 +287,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
     }
+
 
 }

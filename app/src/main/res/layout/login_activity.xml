@@ -91,7 +91,7 @@
         app:layout_marginTopPercent="5%" />
 
     <Button
-        android:id="@+id/id_register_bt"
+        android:id="@+id/login_register_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/id_login_bt"

@@ -4,9 +4,8 @@ package com.kevin.drift.Entity;
  * Created by Benson_Tom on 2016/4/28.
  */
 public class DriftMessageInfo {
-    private String userIcon;
-    private String userName;
-    private String userAddress;
+    private String userID;
+    private String driftAddress;
     private String driftTime;
     private String driftImg;
     private String driftContent;
@@ -53,27 +52,32 @@ public class DriftMessageInfo {
         this.driftTime = driftTime;
     }
 
-    public String getUserAddress() {
-        return userAddress;
+    public String getDriftAddress() {
+        return driftAddress;
     }
 
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress;
+    public void setDriftAddress(String driftAddress) {
+        this.driftAddress = driftAddress;
     }
 
-    public String getUserIcon() {
-        return userIcon;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUserIcon(String userIcon) {
-        this.userIcon = userIcon;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @Override
+    public String toString() {
+        return "DriftMessageInfo{" +
+                "driftAddress='" + driftAddress + '\'' +
+                ", userID='" + userID + '\'' +
+                ", driftTime='" + driftTime + '\'' +
+                ", driftImg='" + driftImg + '\'' +
+                ", driftContent='" + driftContent + '\'' +
+                ", driftCommentNums=" + driftCommentNums +
+                ", driftLikeNums=" + driftLikeNums +
+                '}';
     }
 }

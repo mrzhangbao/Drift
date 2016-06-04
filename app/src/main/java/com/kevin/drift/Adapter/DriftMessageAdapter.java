@@ -2,6 +2,7 @@ package com.kevin.drift.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,18 @@ import android.widget.TextView;
 import com.kevin.drift.Entity.DriftMessageInfo;
 import com.kevin.drift.R;
 import com.kevin.drift.Utils.CircleTransform;
+import com.kevin.drift.Utils.CompressBitmap;
 import com.squareup.picasso.Picasso;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by Benson_Tom on 2016/4/28.
@@ -33,7 +43,7 @@ public class DriftMessageAdapter extends RecyclerView.Adapter<DriftMessageAdapte
     @Override
     public DriftViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.world_recyclerview_item,parent,false);
-        DriftViewHolder holder = null;
+         DriftViewHolder holder = null;
         if (holder == null){
             holder = new DriftViewHolder(view);
             parent.setTag(holder);
@@ -47,7 +57,6 @@ public class DriftMessageAdapter extends RecyclerView.Adapter<DriftMessageAdapte
 
     @Override
     public void onBindViewHolder(DriftViewHolder holder, int position) {
-
     }
 
     @Override

@@ -25,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import com.kevin.drift.Activity.SendDriftMsgActivity;
 import com.kevin.drift.R;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
@@ -37,8 +38,8 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
     Activity mContext;
     private int mWidth;
     private int mHeight;
-    private int statusBarHeight ;
-    private Bitmap mBitmap= null;
+    private int statusBarHeight;
+    private Bitmap mBitmap = null;
     private Bitmap overlay = null;
 
     private Handler mHandler = new Handler();
@@ -69,8 +70,8 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
 
         View view = mContext.getWindow().findViewById(Window.ID_ANDROID_CONTENT);
 //        View view = mContext.getWindow().getDecorView();
-        Log.i(TAG,"height:"+view.getHeight());
-        Log.i(TAG,"width:"+view.getWidth());
+        Log.i(TAG, "height:" + view.getHeight());
+        Log.i(TAG, "width:" + view.getWidth());
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache(true);
         mBitmap = view.getDrawingCache();
@@ -78,9 +79,9 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
         float scaleFactor = 8;//图片缩放比例；
         float radius = 10;//模糊程度
         int width = mBitmap.getWidth();
-        int height =  mBitmap.getHeight();
+        int height = mBitmap.getHeight();
 
-        overlay = Bitmap.createBitmap((int) (width / scaleFactor),(int) (height / scaleFactor),Bitmap.Config.ARGB_8888);
+        overlay = Bitmap.createBitmap((int) (width / scaleFactor), (int) (height / scaleFactor), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(overlay);
         canvas.scale(1 / scaleFactor, 1 / scaleFactor);
         Paint paint = new Paint();
@@ -88,12 +89,12 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
         canvas.drawBitmap(mBitmap, 0, 0, paint);
 
         overlay = FastBlur.doBlur(overlay, (int) radius, true);
-        Log.i(TAG, "blur time is:"+(System.currentTimeMillis() - startMs));
+        Log.i(TAG, "blur time is:" + (System.currentTimeMillis() - startMs));
         return overlay;
     }
 
     @SuppressWarnings("unused")
-    private Animation showAnimation1(final View view,int fromY ,int toY) {
+    private Animation showAnimation1(final View view, int fromY, int toY) {
         AnimationSet set = new AnimationSet(true);
         TranslateAnimation go = new TranslateAnimation(0, 0, fromY, toY);
         go.setDuration(300);
@@ -124,12 +125,12 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
     }
 
 
-    public void showMoreWindow(View anchor,int bottomMargin) {
+    public void showMoreWindow(View anchor, int bottomMargin) {
         final PercentRelativeLayout layout = (PercentRelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.center_menu_all, null);
         setContentView(layout);
 
         final LinearLayout closeLayout = (LinearLayout) layout.findViewById(R.id.window_menu_close_layout);
-        ImageButton close= (ImageButton) closeLayout.findViewById(R.id.window_menu_close_img);
+        ImageButton close = (ImageButton) closeLayout.findViewById(R.id.window_menu_close_img);
 //        PercentRelativeLayout.LayoutParams params =new PercentRelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //        params.bottomMargin = bottomMargin;
 //        params.addRule(PercentRelativeLayout.BELOW, R.id.window_menu_comment);
@@ -157,7 +158,7 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
         showAtLocation(anchor, Gravity.BOTTOM, 0, statusBarHeight);
     }
 
-    private void showAnimation(ViewGroup layout){
+    private void showAnimation(ViewGroup layout) {
         layout.findViewById(R.id.window_menu_friend).setOnClickListener(this);
         layout.findViewById(R.id.window_menu_camera).setOnClickListener(this);
         layout.findViewById(R.id.window_menu_music).setOnClickListener(this);
@@ -167,9 +168,9 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
         layout.findViewById(R.id.window_menu_video).setOnClickListener(this);
         layout.findViewById(R.id.window_menu_redpacket).setOnClickListener(this);
         layout.findViewById(R.id.window_menu_wallet).setOnClickListener(this);
-        for(int i=0;i<layout.getChildCount();i++){
+        for (int i = 0; i < layout.getChildCount(); i++) {
             final View child = layout.getChildAt(i);
-            if(child.getId() == R.id.window_menu_close_img){
+            if (child.getId() == R.id.window_menu_close_img) {
                 continue;
             }
             child.setOnClickListener(this);
@@ -192,10 +193,10 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
 
     }
 
-    private void closeAnimation(ViewGroup layout){
-        for(int i=0;i<layout.getChildCount();i++){
+    private void closeAnimation(ViewGroup layout) {
+        for (int i = 0; i < layout.getChildCount(); i++) {
             final View child = layout.getChildAt(i);
-            if(child.getId() == R.id.window_menu_close_img){
+            if (child.getId() == R.id.window_menu_close_img) {
                 continue;
             }
             child.setOnClickListener(this);
@@ -238,16 +239,16 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
                         }
                     });
                 }
-            }, (layout.getChildCount()-i-1) * 30);
+            }, (layout.getChildCount() - i - 1) * 30);
 
-            if(child.getId() == R.id.window_menu_friend){
+            if (child.getId() == R.id.window_menu_friend) {
                 mHandler.postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
                         dismiss();
                     }
-                }, (layout.getChildCount()-i) * 30 + 80);
+                }, (layout.getChildCount() - i) * 30 + 80);
             }
         }
 
@@ -258,41 +259,44 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.window_menu_friend:
-                Log.i(TAG,"点击了好友");
+                Log.i(TAG, "点击了好友");
 //                Intent intent = new Intent(mContext,SecondActivity.class);
 //                mContext.startActivity(intent);
                 dismiss();
                 mContext.finish();
                 break;
             case R.id.window_menu_camera:
-                Log.i(TAG,"点击了相机");
+                Log.i(TAG, "点击了相机");
                 break;
             case R.id.window_menu_music:
-                Log.i(TAG,"点击了音乐");
+                Log.i(TAG, "点击了音乐");
                 break;
             case R.id.window_menu_edit:
-                Log.i(TAG,"点击了文字");
+                Log.i(TAG, "点击了文字");
+                Intent intent = new Intent(mContext,SendDriftMsgActivity.class);
+                mContext.startActivity(intent);
                 break;
             case R.id.window_menu_title:
-                Log.i(TAG,"点击了头条");
+                Log.i(TAG, "点击了头条");
                 break;
             case R.id.window_menu_photo:
-                Log.i(TAG,"点击了照片");
+                Log.i(TAG, "点击了照片");
                 break;
             case R.id.window_menu_video:
-                Log.i(TAG,"点击了视频");
+                Log.i(TAG, "点击了视频");
                 break;
             case R.id.window_menu_redpacket:
-                Log.i(TAG,"点击了红包");
+                Log.i(TAG, "点击了红包");
                 break;
             case R.id.window_menu_wallet:
-                Log.i(TAG,"点击了钱包");
+                Log.i(TAG, "点击了钱包");
                 break;
 
             default:
                 break;
         }
     }
+
     public void destroy() {
         if (null != overlay) {
             overlay.recycle();
@@ -305,7 +309,6 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
             System.gc();
         }
     }
-
 
 
 }

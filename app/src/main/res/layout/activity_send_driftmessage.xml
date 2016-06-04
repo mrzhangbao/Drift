@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dedbdb"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%">
+
+        <ImageButton
+            android:id="@+id/sendDrift_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@mipmap/back_normal" />
+
+        <TextView
+            android:id="@+id/sendDrift_send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="#20f58b"
+            android:textSize="18sp"
+            app:layout_marginLeftPercent="78%" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#40eda0"
+        app:layout_heightPercent="70%"
+        app:layout_marginPercent="10%">
+
+        <ImageView
+            android:id="@+id/sendDrift_msgImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ae6ce4"
+            />
+        <EditText
+            android:id="@+id/sendDrift_msgContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:background="#2fb3b3b3"
+            app:layout_heightPercent="60%"
+            />
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        app:layout_heightPercent="10%">
+
+        <TextView
+            android:id="@+id/sendDrift_msgChangeImg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:drawableTop="@mipmap/message_image_background"
+            android:gravity="center_horizontal"
+            android:text="换图"
+            app:layout_widthPercent="20%" />
+
+        <TextView
+            android:id="@+id/sendDrift_msgEmotion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:drawableTop="@mipmap/message_emotion_background"
+            android:gravity="center_horizontal"
+            android:text="表情"
+            app:layout_widthPercent="20%" />
+
+        <TextView
+            android:id="@+id/sendDrift_msgChangeTypeface"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:drawableTop="@mipmap/message_typeface"
+            android:gravity="center_horizontal"
+            android:text="字体"
+            app:layout_widthPercent="20%" />
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+</com.zhy.android.percent.support.PercentLinearLayout>

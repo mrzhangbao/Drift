@@ -33,6 +33,11 @@
             android:label="@string/register"
             android:windowSoftInputMode="adjustPan|stateHidden"
             />
+        <activity
+            android:name=".Activity.SendDriftMsgActivity"
+            android:label="@string/register"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
     </application>
 
 </manifest>

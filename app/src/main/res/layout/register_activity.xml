@@ -89,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/register_phone"
-                    android:inputType="textPassword"
+                    android:inputType="phone"
                     app:layout_marginLeftPercent="2%"
                     android:background="@null" />
 
@@ -133,7 +133,7 @@
                 app:layout_heightPercent="15%"
                 app:layout_marginLeftPercent="6%"
                 app:layout_marginRightPercent="6%"
-                app:layout_marginTopPercent="5%" />
+                app:layout_marginTopPercent="10%" />
 
     </com.zhy.android.percent.support.PercentLinearLayout>
 

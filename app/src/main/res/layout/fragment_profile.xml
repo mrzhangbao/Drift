@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.android.percent.support.PercentLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#ededed"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="15%"
+        app:layout_marginTopPercent="2%"
+        android:background="#fcfcfc"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="80%"
+            app:layout_marginPercent="3%"
+            android:src="@mipmap/tabbar_compose_shooting"
+            android:layout_gravity="center"
+            />
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            >
+            <TextView
+                android:id="@+id/my_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_marginTopPercent="20%"
+                android:text="admin"
+                android:textSize="20sp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_marginTopPercent="15%"
+                app:layout_marginLeftPercent="5%"
+                android:layout_toRightOf="@+id/my_username"
+                android:src="@mipmap/boy64"
+                />
+            <TextView
+                android:id="@+id/my_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/my_username"
+                app:layout_marginTopPercent="5%"
+                android:text="ID:"
+                />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/my_id"
+                android:layout_below="@+id/my_username"
+                app:layout_marginTopPercent="5%"
+                android:text="66666666"
+                />
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+        <include
+            android:id="@+id/profile_item_photoAlbum"
+            layout="@layout/item_profile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_heightPercent="10%"
+            app:layout_marginTopPercent="2%"
+            />
+    <include
+        android:id="@+id/profile_item_shopping"
+        layout="@layout/item_profile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="2%"
+        />
+    <include
+        android:id="@+id/profile_item_wallet"
+        layout="@layout/item_profile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="2%"
+        />
+    <include
+        android:id="@+id/profile_item_emotion"
+        layout="@layout/item_profile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="2%"
+        />
+    <include
+        android:id="@+id/profile_item_setting"
+        layout="@layout/item_profile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="10%"
+        app:layout_marginTopPercent="2%"
+        />
+
+</com.zhy.android.percent.support.PercentLinearLayout>

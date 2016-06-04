@@ -27,5 +27,6 @@ dependencies {
     compile 'com.zhy:percent-support-extends:1.1.1'
     compile 'com.github.promeg:tinypinyin:1.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-
+    compile 'com.zhy:okhttputils:2.4.1'
+    compile files('libs/gson-2.6.2.jar')
 }
