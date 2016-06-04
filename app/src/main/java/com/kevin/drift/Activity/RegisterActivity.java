@@ -11,18 +11,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.kevin.drift.Entity.RegisterEntity;
+import com.kevin.drift.Entity.User;
 import com.kevin.drift.LoginActivity;
 import com.kevin.drift.R;
+import com.kevin.drift.Utils.AESUtil;
 import com.kevin.drift.Utils.OkHttpManager;
 import com.kevin.drift.Utils.RegexValidateUtil;
 import com.kevin.drift.Utils.URLManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Benson_Tom on 2016/5/11.
@@ -31,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private static final String URL="http://119.124.20.43:8080/WebServer/TEST";
     private static final String TAG ="RegisterActivity";
     private EditText mUsername;
-    private EditText mPhone;
+    private EditText mUserAccount;
     private EditText mPassword;
     private Button mRegister;
     private ImageButton mBack;
@@ -49,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void initWidget() {
         mBack = (ImageButton) this.findViewById(R.id.register_back);
         mUsername = (EditText) this.findViewById(R.id.register_username);
-        mPhone = (EditText) this.findViewById(R.id.register_phone);
+        mUserAccount = (EditText) this.findViewById(R.id.register_phone);
         mPassword = (EditText) this.findViewById(R.id.register_password);
         mRegister = (Button) this.findViewById(R.id.register_bt);
 
@@ -74,38 +79,31 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 Log.i(TAG,"点击了注册");
                 username = mUsername.getText().toString();
                 password = mPassword.getText().toString();
-                phone = mPhone.getText().toString();
+                phone = mUserAccount.getText().toString();
                 if (TextUtils.isEmpty(username)){
                     mUsername.setError("Username isEmpty");
                     return;
                 }
                 if (TextUtils.isEmpty(phone)){
-                    mPhone.setError("Phone isEmpty");
+                    mUserAccount.setError("Phone isEmpty");
                     return;
                 }
                 if (!RegexValidateUtil.isMobileNO(phone)){
-                    mPhone.setError("Format error");
+                    mUserAccount.setError("Format error");
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
                     mPassword.setError("Password isEmpty");
                     return;
                 }
-                RegisterEntity r = new RegisterEntity();
-                r.setUsername(username);
-                r.setPhone(phone);
-                r.setPassword(password);
-
-                List<RegisterEntity> list = new ArrayList<>();
-                for (int i = 0; i<10;i++){
-                    RegisterEntity ss  = new RegisterEntity();
-                    ss.setUsername(username+":"+i);
-                    ss.setPhone(phone+":"+i);
-                    ss.setPassword(password+":"+i);
-                    list.add(ss);
-                }
-
-                new RegisterAsyncTask(new Gson().toJson(r)).execute(URLManager.USER_REGISTER);
+                User u = new User();
+                u.setUserAccount(phone);
+                u.setUsername(username);
+                u.setPassword(AESUtil.encrypt(AESUtil.KEY,password));//使用了AES的加密算法进行密码的加密
+                Gson g = new Gson();
+                Map<String,Object> map = new HashMap<>();
+                map.put("user",u);
+                new RegisterAsyncTask(u,g.toJson(map)).execute(URLManager.USER_REGISTER);
 //                new RegisterAsyncTask(new Gson().toJson(list)).execute(URL);
                 break;
 
@@ -119,17 +117,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     class RegisterAsyncTask extends AsyncTask<String,Void,String>{
-        private String json="";
+        private User u;
+        private String json;
 
-        public RegisterAsyncTask(String json){
-            this.json=json;
+        public RegisterAsyncTask(User u,String json){
+            this.u=u;
+            this.json = json;
+            Log.i(TAG,"注册的Json:"+json);
+
         }
 
         @Override
         protected String doInBackground(String... strings) {
             String s ="";
             try {
-                s= OkHttpManager.Post(strings[0],json);
+                s= OkHttpManager.register(strings[0],u);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -141,6 +143,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Log.i("TAG","注册信息"+s);
+
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        RegisterActivity.this.startActivity(intent);
+                        //使用Activity过度动画
+                        Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+                        RegisterActivity.this.finish();
+                        overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
+
+
         }
     }
 

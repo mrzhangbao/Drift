@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.android.percent.support.PercentLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <com.kevin.drift.Friends.ClearEditText
-        android:id="@+id/id_search_clear"
+    <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="请输入关键字"
-        android:drawableLeft="@mipmap/ic_search_api_holo_light"
-        android:drawableRight="@mipmap/ic_clear_search_api_holo_light"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@null"
-        />
+        android:layout_height="0dp"
+        android:background="#29cfd2"
+        android:orientation="horizontal"
+        app:layout_heightPercent="8%">
+
+        <ImageButton
+            android:id="@+id/mobile_contacts_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@mipmap/back_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/mobile_contacts"
+            app:layout_marginLeftPercent="35%" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
+
         <ListView
             android:id="@+id/id_content_listView"
             android:layout_width="match_parent"
@@ -51,4 +62,4 @@
 
     </FrameLayout>
 
-</LinearLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

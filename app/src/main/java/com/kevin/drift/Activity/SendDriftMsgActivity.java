@@ -21,6 +21,7 @@ import com.kevin.drift.Utils.DBUtils.DBUserManager;
 import com.kevin.drift.Utils.GetCurrentTime;
 import com.kevin.drift.Utils.OkHttpManager;
 import com.kevin.drift.Utils.RandomImageUrl;
+import com.kevin.drift.Utils.RandomMessage;
 import com.kevin.drift.Utils.URLManager;
 import com.squareup.picasso.Picasso;
 
@@ -48,6 +49,7 @@ public class SendDriftMsgActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_send_driftmessage);
         initWidget();
 
+
     }
 
     private void initWidget() {
@@ -57,11 +59,11 @@ public class SendDriftMsgActivity extends AppCompatActivity implements View.OnCl
         mSend = (TextView) this.findViewById(R.id.sendDrift_send);
         mBack = (ImageButton) this.findViewById(R.id.sendDrift_back);
 
-
-        Picasso.with(this).load(getImageUrl()).into(mMsgImage);
         mChangeImg.setOnClickListener(this);
         mSend.setOnClickListener(this);
         mBack.setOnClickListener(this);
+        Random r = new Random();
+        Picasso.with(this).load(RandomMessage.getRandomImageUrl(r.nextInt(12)+1)).into(mMsgImage);
 
     }
 
@@ -107,7 +109,7 @@ public class SendDriftMsgActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.sendDrift_back:
                 finish();
-                overridePendingTransition(R.anim.activity_out_to_left,R.anim.activity_in_from_right);
+//                overridePendingTransition(R.anim.activity_out_to_left,R.anim.activity_in_from_right);
                 break;
             case R.id.sendDrift_send:
                 Toast.makeText(this,"内容："+mMsgContent.getText().toString(),Toast.LENGTH_SHORT).show();

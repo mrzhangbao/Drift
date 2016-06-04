@@ -12,18 +12,10 @@ import android.widget.TextView;
 import com.kevin.drift.Entity.DriftMessageInfo;
 import com.kevin.drift.R;
 import com.kevin.drift.Utils.CircleTransform;
-import com.kevin.drift.Utils.CompressBitmap;
+import com.kevin.drift.Utils.RandomMessage;
 import com.squareup.picasso.Picasso;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.io.IOException;
 import java.util.List;
-
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * Created by Benson_Tom on 2016/4/28.
@@ -57,6 +49,13 @@ public class DriftMessageAdapter extends RecyclerView.Adapter<DriftMessageAdapte
 
     @Override
     public void onBindViewHolder(DriftViewHolder holder, int position) {
+        holder.driftContent.setText(mList.get(position).getDriftContent());
+        holder.userAddress.setText(mList.get(position).getDriftAddress());
+        holder.userName.setText(RandomMessage.getUser(mList.get(position).getUserID()).getUsername());
+        final String userIcon = (RandomMessage.getUser(mList.get(position).getUserID()).getUserIcon());
+        Picasso.with(mContext).load(userIcon).placeholder(R.drawable.ic_weixin_login_normal).transform(new CircleTransform()).into(holder.userIcon);
+        Picasso.with(mContext).load(mList.get(position).getDriftImg()).into(holder.driftImg);
+        Log.i(TAG,"列表信息："+position+mList.toString());
     }
 
     @Override

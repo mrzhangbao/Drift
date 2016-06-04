@@ -52,7 +52,6 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:src="@mipmap/ic_group_chat" />
-
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -88,7 +87,6 @@
             android:layout_weight="5"
             android:gravity="center_vertical"
             android:text="系统消息" />
-
     </LinearLayout>
 
 </LinearLayout>

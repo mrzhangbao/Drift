@@ -3,6 +3,9 @@
     package="com.kevin.drift">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
 
     <application
         android:allowBackup="true"
@@ -15,7 +18,6 @@
             android:theme="@style/Theme.BackgroundTranslucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,6 +38,11 @@
         <activity
             android:name=".Activity.SendDriftMsgActivity"
             android:label="@string/register"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
+        <activity
+            android:name=".Activity.MobileContactsActivity"
+            android:label="@string/mobile_contacts"
             android:windowSoftInputMode="adjustPan|stateHidden"
             />
     </application>

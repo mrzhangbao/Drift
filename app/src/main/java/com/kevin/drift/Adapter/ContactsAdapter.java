@@ -1,4 +1,4 @@
-package com.kevin.drift.Friends;
+package com.kevin.drift.Adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -14,6 +14,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kevin.drift.Entity.MobileContacts;
 import com.kevin.drift.Fragment.SortModel;
 import com.kevin.drift.R;
 
@@ -23,14 +24,14 @@ import java.util.Random;
 /**
  * Created by Benson_Tom on 2016/4/3.
  */
-public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
+public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
 
-    private List<SortModel> mList;
+    private List<MobileContacts> mList;
     private Context mContext;
 
 
-    public FriendsAdapter(List<SortModel> friendsEntities, Context context) {
-        mList = friendsEntities;
+    public ContactsAdapter(List<MobileContacts> m, Context context) {
+        mList = m;
         mContext = context;
     }
 
@@ -52,7 +53,7 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
-        final SortModel mContent = mList.get(i);
+        final MobileContacts mContent = mList.get(i);
         if (view == null) {
             viewHolder = new ViewHolder();
             view = LayoutInflater.from(mContext).inflate(R.layout.datesort_item, null);
@@ -77,17 +78,17 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
         } else {
             viewHolder.mTitle.setVisibility(View.GONE);
         }
-        Log.i("TAG", "首字符：" + mList.get(i).getUsername().substring(0, 1));
-        viewHolder.mUserIcon.setText(mList.get(i).getUsername().substring(0, 1));
+        Log.i("TAG", "首字符：" + mList.get(i).getName().substring(0, 1));
+        viewHolder.mUserIcon.setText(mList.get(i).getName().substring(0, 1));
         final Drawable originDrawable = viewHolder.mUserIcon.getBackground();
         viewHolder.mUserIcon.setBackground(tintDrawable(originDrawable, ColorStateList.valueOf(getRandomColor())));
 
-        viewHolder.mSortData.setText(this.mList.get(i).getUsername());
+        viewHolder.mSortData.setText(this.mList.get(i).getName());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext,mList.get(i).getUsername(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,mList.get(i).getName(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,7 +101,7 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
      *
      * @param list
      */
-    public void updateListView(List<SortModel> list) {
+    public void updateListView(List<MobileContacts> list) {
         mList = list;
         notifyDataSetChanged();
 

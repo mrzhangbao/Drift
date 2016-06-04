@@ -1,8 +1,10 @@
 package com.kevin.drift.Fragment;
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
@@ -12,11 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.promeg.pinyinhelper.Pinyin;
+import com.kevin.drift.Activity.HomeActivity;
+import com.kevin.drift.Activity.MobileContactsActivity;
+import com.kevin.drift.Entity.MobileContacts;
 import com.kevin.drift.Friends.ClearEditText;
 import com.kevin.drift.Friends.PinyinComparator;
 import com.kevin.drift.Friends.SideBar;
 import com.kevin.drift.Friends.FriendsAdapter;
 import com.kevin.drift.R;
+import com.kevin.drift.Utils.GetContacts;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +32,7 @@ import java.util.List;
  * Created by Benson_Tom on 2016/4/22.
  */
 public class FriendsFragment extends BaseFragment{
+    private static final String TAG="FriendsFragment";
     private ListView mListView;
     private SideBar mSideBar;
 
@@ -56,6 +63,8 @@ public class FriendsFragment extends BaseFragment{
     protected void initEvent(View view) {
 
         initView(view);
+        List<MobileContacts> l = GetContacts.getLocalContacts(getContext());
+        Log.i(TAG,"联系人："+l.toString());
 
     }
 
@@ -87,7 +96,7 @@ public class FriendsFragment extends BaseFragment{
 
 //        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LayoutInflater inflater = (LayoutInflater) LayoutInflater.from(getContext());
-        headerView = inflater.inflate(R.layout.contacts_header,mListView,false);
+        headerView = inflater.inflate(R.layout.friends_header,mListView,false);
         mListView.addHeaderView(headerView);
         setHeaderClick(headerView);
 
@@ -136,6 +145,10 @@ public class FriendsFragment extends BaseFragment{
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"新朋友",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), MobileContactsActivity.class);
+                getActivity().startActivity(intent);
+                //使用Activity过度动画
+                getActivity().overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
             }
         });
         mGroupChat.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +179,6 @@ public class FriendsFragment extends BaseFragment{
             char[] chars = date[i].toCharArray();
             String pinyin = Pinyin.toPinyin(chars[0]);
             String sortString = pinyin.substring(0, 1).toUpperCase();
-
             //正则表达式，判断首字母是否为英文字母
             if (sortString.matches("[A-Z]")) {
                 friendsEntity.setUserFirstLetter(sortString.toUpperCase());

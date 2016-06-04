@@ -27,6 +27,7 @@ import okhttp3.Response;
  * Created by Benson_Tom on 2016/5/25.
  */
 public class OkHttpManager {
+    private static final String TAG = "OkHttpManager";
     /**
      * 静态实例
      */
@@ -87,7 +88,7 @@ public class OkHttpManager {
     }
 
     public static String register(String url, User u) throws IOException {
-        Log.i("TAG","INformation："+u.toString());
+        Log.i(TAG,"RegisterInformation："+u.toString());
         FormBody body = new FormBody.Builder()
                 .add("userAccount",u.getUserAccount())
                 .add("password",u.getPassword())

@@ -21,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kevin.drift.Activity.HomeActivity;
 import com.kevin.drift.Activity.RegisterActivity;
 import com.kevin.drift.Entity.User;
+import com.kevin.drift.Utils.AESUtil;
 import com.kevin.drift.Utils.CustomDialog.KevinLoadingView;
 import com.kevin.drift.Utils.DBUtils.DBUserManager;
 import com.kevin.drift.Utils.JsonBean;
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private String userAccount;
     private String password;
     private KevinLoadingView mView;
-
+    private JsonBean bean;
 
 
     @Override
@@ -79,11 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
-                saveUser();
                 checkUser();
 
             }
@@ -112,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             mPasswordEt.setError("密码不能为空");
             return;
         }
-        new LoginAsyncTask(userAccount,password).execute(URLManager.USER_LOGIN);
+        new LoginAsyncTask(userAccount, AESUtil.encrypt(AESUtil.KEY,password)).execute(URLManager.USER_LOGIN);
 
     }
     private boolean isEmpty(String s){
@@ -144,18 +140,17 @@ public class LoginActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public void saveUser(){
+    public void saveUser(JsonBean bean){
         Log.i(TAG,"保存用户数据");
         User u = new User();
         u.setId(1);
-        u.setUserAccount("1578888");
-        u.setUsername("kevin");
-        u.setUserIcon("http.jpg");
-        u.setUserIntroduce("猪");
-        u.setUserFansNumber("15");
-        u.setUserFocusNumbers("32");
+        u.setUserAccount(bean.getUser().getUserAccount());
+        u.setUsername(bean.getUser().getUsername());
+        u.setUserIcon(bean.getUser().getUserIcon());
+        u.setUserIntroduce(bean.getUser().getUserIntroduce());
+        u.setUserFansNumber(bean.getUser().getUserFansNumbers());
+        u.setUserFocusNumbers(bean.getUser().getUserFocusNumbers());
         DBUserManager manager = new DBUserManager(this);
-
         boolean b =  manager.addUser(u);
         if (b){
             for (int i =0;i<5;i++){
@@ -196,8 +191,13 @@ public class LoginActivity extends AppCompatActivity {
             Log.i(TAG,"登陆用户信息："+s);
             Gson g = new Gson();
             Type type = new TypeToken<JsonBean>(){}.getType();
-            JsonBean bean = g.fromJson(s,type);
-            Log.i(TAG,"解析用户信息："+bean.user);
+            bean = g.fromJson(s,type);
+            Log.i(TAG,"解析用户信息："+bean.getMessageInfo().toString());
+            Log.i(TAG,"解析用户信息："+bean.getUser().getUserAccount().toString());
+            if (bean!=null){
+                saveUser(bean);
+            }
+
             return s;
         }
 
@@ -205,23 +205,28 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(2000);
-                        mView.dismiss();
-                        Thread.sleep(200);
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        LoginActivity.this.startActivity(intent);
-                        //使用Activity过度动画
-                        overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+            if ("用户名不存在".equals(bean.getMessageInfo())){
+                Toast.makeText(LoginActivity.this,"账号密码错误",Toast.LENGTH_SHORT).show();
 
+                return;
+            }else {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            mView.dismiss();
+                            Thread.sleep(200);
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            LoginActivity.this.startActivity(intent);
+                            //使用Activity过度动画
+                            overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
         }
     }
 }

@@ -3,7 +3,9 @@ package com.kevin.drift.Fragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,23 +18,24 @@ import com.google.gson.reflect.TypeToken;
 import com.kevin.drift.Adapter.DriftMessageAdapter;
 import com.kevin.drift.Entity.DriftMessageInfo;
 import com.kevin.drift.R;
+import com.kevin.drift.Utils.RandomMessage;
 import com.kevin.drift.Utils.JsonBean;
 import com.kevin.drift.Utils.OkHttpManager;
 import com.kevin.drift.Utils.URLManager;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Benson_Tom on 2016/4/22.
  */
-public class WorldFragment extends BaseFragment{
+public class WorldFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
     private static final String TAG ="WorldFragment";
     private RecyclerView mRecyclerView;
     private DriftMessageAdapter mAdapter;
     private List<DriftMessageInfo> mList;
+    private SwipeRefreshLayout mRefreshLayout;
 
     
 
@@ -52,7 +55,10 @@ public class WorldFragment extends BaseFragment{
     protected void initEvent(View view) {
         setHasOptionsMenu(true);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.id_world_recyclerView);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         initDatas();
+        mRefreshLayout.setColorSchemeResources(R.color.color1,R.color.color2,R.color.color3,R.color.color4);
+        mRefreshLayout.setOnRefreshListener(this);
         LinearLayoutManager m = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(m);
         mAdapter = new DriftMessageAdapter(getContext(),mList);
@@ -70,16 +76,22 @@ public class WorldFragment extends BaseFragment{
 
     private void initDatas() {
         DriftMessageInfo d = null;
-        mList = new ArrayList<>();
-        for (int i = 0; i< 25; i++){
-            d = new DriftMessageInfo();
-            d.setUserID("1");
-            d.setDriftTime("5-07");
-            d.setDriftImg("hha");
-            d.setDriftContent("我很无聊，因为我是大写的测试数据，编号是"+"00"+i);
-            mList.add(d);
-        }
+        mList = RandomMessage.GetMessage();
+
         new DriftAsyncTask().execute(URLManager.GET_MESSAGE);
+    }
+
+    @Override
+    public void onRefresh() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mList = RandomMessage.ReflashMessage(mList);
+                mAdapter.notifyDataSetChanged();
+                mRefreshLayout.setRefreshing(false);
+            }
+        }, 3000);
     }
 
     class DriftAsyncTask extends AsyncTask<String,Void,String> {

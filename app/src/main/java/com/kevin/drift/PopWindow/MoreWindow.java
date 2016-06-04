@@ -176,7 +176,6 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
             child.setOnClickListener(this);
             child.setVisibility(View.INVISIBLE);
             mHandler.postDelayed(new Runnable() {
-
                 @Override
                 public void run() {
                     child.setVisibility(View.VISIBLE);
