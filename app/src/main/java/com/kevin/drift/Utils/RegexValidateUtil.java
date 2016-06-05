@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  * Created by Benson_Tom on 2016/5/25.
+ * 手机号码检测
  */
 public class RegexValidateUtil {
     /**

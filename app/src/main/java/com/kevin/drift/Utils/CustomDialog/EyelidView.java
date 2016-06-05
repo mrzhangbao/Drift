@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 
 /**
  * Created by Benson_Tom on 2016/6/1.
+ * 自定义View
  */
 public class EyelidView extends View{
     private float progress;
@@ -135,8 +136,6 @@ public class EyelidView extends View{
             canvas.drawRect(0, 0, getWidth(), bottom, mPaint);
         }
     }
-
-
     private boolean whenStop() {
         return (isLoading == false && progress <= 0.001f);
     }

@@ -12,6 +12,7 @@ import java.util.Random;
 
 /**
  * Created by Benson_Tom on 2016/6/4.
+ * 随机匹配消息数据
  */
 public class RandomMessage {
     private static final String TAG = "RandomMessage";

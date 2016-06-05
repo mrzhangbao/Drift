@@ -16,7 +16,9 @@ import android.widget.EditText;
 
 import com.kevin.drift.R;
 
-
+/**
+ * 自定义EditText
+ */
 public class ClearEditText extends EditText implements TextWatcher, OnFocusChangeListener {
 
     private Drawable mClearDrawable;//删除按钮的引用

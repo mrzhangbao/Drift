@@ -1,7 +1,5 @@
 package com.kevin.drift.Friends;
 
-import com.kevin.drift.Fragment.SortModel;
-
 import java.util.Comparator;
 
 /**

@@ -3,19 +3,13 @@ package com.kevin.drift.Utils;
 import android.os.Environment;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.kevin.drift.Entity.RegisterEntity;
 import com.kevin.drift.Entity.User;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.Callback;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
-import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -25,6 +19,7 @@ import okhttp3.Response;
 
 /**
  * Created by Benson_Tom on 2016/5/25.
+ * OkHttp3的管理辅助类
  */
 public class OkHttpManager {
     private static final String TAG = "OkHttpManager";
@@ -56,6 +51,12 @@ public class OkHttpManager {
         client.newBuilder().cache(cache);
     }
 
+    /**
+     * 根据URL获取服务器上的数据
+     * @param url
+     * @return
+     * @throws IOException
+     */
     public static String Get(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
@@ -64,6 +65,13 @@ public class OkHttpManager {
         return response.body().string();
     }
 
+    /**
+     * 通过URL来提交Json格式的数据信息到服务器中
+     * @param url
+     * @param json
+     * @return
+     * @throws IOException
+     */
     public static String Post(String url,String json) throws IOException {
         RequestBody body = RequestBody.create(JSON,json);
         Request request = new Request.Builder()
@@ -74,6 +82,14 @@ public class OkHttpManager {
         return response.body().string();
     }
 
+    /**
+     * 通过提交键值对的形式，向服务器提交数据
+     * @param url 服务器URL
+     * @param userAccount
+     * @param password
+     * @return
+     * @throws IOException
+     */
     public static String login(String url,String userAccount,String password) throws IOException {
         FormBody body = new FormBody.Builder()
                 .add("userAccount",userAccount)
@@ -87,6 +103,13 @@ public class OkHttpManager {
         return  response.body().string();
     }
 
+    /**
+     * 通过提交键值对的形式，向服务器提交数据
+     * @param url
+     * @param u
+     * @return
+     * @throws IOException
+     */
     public static String register(String url, User u) throws IOException {
         Log.i(TAG,"RegisterInformation："+u.toString());
         FormBody body = new FormBody.Builder()
@@ -100,45 +123,5 @@ public class OkHttpManager {
                 .build();
         Response response = client.newCall(request).execute();
         return  response.body().string();
-    }
-
-
-    public static String Kevin(String url,String userAccount,String password){
-        final String s=null;
-        RegisterEntity r = new RegisterEntity();
-        r.setUsername("hello");
-        r.setPassword("123456");
-        r.setPhone("55555");
-        Gson gson = new Gson();
-        String k = gson.toJson(r);
-        Log.i("TAG","*********Json:"+k);
-        OkHttpUtils.post().url("http://119.124.20.43:8080/WebServer/TEST")
-                .addParams("username","haha")
-                .addParams("phone","123")
-                .addParams("password",k)
-                .build()
-                .execute(new Callback() {
-                    @Override
-                    public Object parseNetworkResponse(Response response) throws Exception {
-                        String s =response.body().string();
-                        for (int i =0;i<5;i++){
-                            Log.i("TAG","***********:"+s);
-                        }
-                        return s;
-                    }
-
-                    @Override
-                    public void onError(Call call, Exception e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(Object response) {
-
-                    }
-                });
-
-
-        return null;
     }
 }

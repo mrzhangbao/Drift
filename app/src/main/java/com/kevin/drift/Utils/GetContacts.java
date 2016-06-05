@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * Created by Benson_Tom on 2016/6/4.
+ * 通过ContentResolver 内容提供者获取手机里面的联系人信息
  */
 public class GetContacts {
     private static final String A="content://com.android.contacts/raw_contacts";
@@ -26,11 +27,13 @@ public class GetContacts {
     public static List<MobileContacts> getLocalContacts(Context context){
         ContentResolver r = context.getContentResolver();
         List<MobileContacts> list = new ArrayList<>();
+        //通过游标查询手机里面的联系人
         Cursor c = r.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 s,null,null,null);
         MobileContacts m =null;
         if (c != null){
             while (c.moveToNext()){
+                //联系人信息的保存
                 m = new MobileContacts();
                 m.setPhone(c.getString(c.getColumnIndex(NUMBER)));
                 m.setName(c.getString(c.getColumnIndex(DISPLAY_NAME)));

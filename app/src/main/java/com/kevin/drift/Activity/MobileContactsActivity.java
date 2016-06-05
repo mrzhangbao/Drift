@@ -24,17 +24,18 @@ import java.util.List;
 
 /**
  * Created by Benson_Tom on 2016/6/4.
+ * 好友推荐中的手机联系人显示界面
  */
 public class MobileContactsActivity extends AppCompatActivity{
     private static final String TAG="MobileContactsActivity";
     private ListView mListView;
-    private SideBar mSideBar;
+    private SideBar mSideBar;//右侧索引条
 
-    private TextView mDialog;
-    private ContactsAdapter mAdapter;
+    private TextView mDialog;//索引字母显示dialog
+    private ContactsAdapter mAdapter;//联系人适配器
 
-    private List<MobileContacts> mList;
-    private ImageButton mBack;
+    private List<MobileContacts> mList;//装有联系人的容器
+    private ImageButton mBack;//返回按钮
 
 
     /**
@@ -48,13 +49,12 @@ public class MobileContactsActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mobile_contacts_activity);
-        initView();
+        initView();//实例化
     }
 
     private void initView() {
 
         pinyinComparator = new ContactsPinyinComparator();
-
         mSideBar = (SideBar) findViewById(R.id.id_sideBar_CustomView);
         mDialog = (TextView) findViewById(R.id.id_dialog_textView);
         mBack = (ImageButton) findViewById(R.id.mobile_contacts_back);
@@ -74,8 +74,7 @@ public class MobileContactsActivity extends AppCompatActivity{
         });
         mListView = (ListView) findViewById(R.id.id_content_listView);
 
-        //Edited here by Kevin at 2016/4/5 15:57;
-        //使用模拟数据
+        //调用GetContacts的getLocalContacts获取到本地的手机联系人数据
         mList = filledDate(GetContacts.getLocalContacts(this));
 
         /**
@@ -83,8 +82,9 @@ public class MobileContactsActivity extends AppCompatActivity{
          */
         Collections.sort(mList, pinyinComparator);
         mAdapter = new ContactsAdapter(mList, this);
-        mListView.setAdapter(mAdapter);
+        mListView.setAdapter(mAdapter);//为ListView设置适配器
 
+        //ListView的Item点击事件
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -96,6 +96,7 @@ public class MobileContactsActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 MobileContactsActivity.this.finish();
+                //Activity进入和退出动画
                 overridePendingTransition(R.anim.back_in_to_left,R.anim.back_out_to_right);
             }
         });

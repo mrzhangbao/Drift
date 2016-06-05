@@ -32,35 +32,43 @@ import com.kevin.drift.Utils.ToRoundBitmap;
 import java.io.IOException;
 import java.lang.reflect.Type;
 
-
+/**
+ * Edited here by Kevin at 2016/6/5 13:16;
+ * 登陆界面的Activity
+ */
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG ="LoginActivity";
     private long exitTime = 0;
-    private Button mLoginButton;
-    private Button mRegister;
-    private EditText mAccountEt;
-    private EditText mPasswordEt;
+    private Button mLoginButton; //登陆按钮
+    private Button mRegister;//注册按钮
+    private EditText mAccountEt;//用户账户
+    private EditText mPasswordEt;//用户密码
     private ImageView mUserIconImg;
     private String userAccount;
     private String password;
-    private KevinLoadingView mView;
-    private JsonBean bean;
+    private KevinLoadingView mView;//自定义Dialog
+    private JsonBean bean;//自定义Gson解析bean
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //设定当前Activity视图布局文件
         setContentView(R.layout.login_activity);
         //初始化布局里面的控件
         mView = new KevinLoadingView();
         initWidget();
-        initEvent();
+        initEvent();//初始化事件
 
 
     }
 
 
+    /**
+     * 各个控件的实例化
+     */
     private void initWidget() {
+        //控件的查找
         mUserIconImg = (ImageView) this.findViewById(R.id.id_userIcon_imgv);
         mLoginButton = (Button) this.findViewById(R.id.id_login_bt);
         mRegister = (Button) this.findViewById(R.id.login_register_bt);
@@ -77,29 +85,38 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initEvent() {
+        //通过匿名内部类的方式来设置登陆按钮的点击监听事件
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //登陆业务逻辑处理方法
                 checkUser();
 
             }
         });
 
+        //通过匿名内部类的方式来设置注册按钮的点击监听事件
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //通过意图来实现Activity的跳转，这里跳转到注册的Activity
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(intent);
-                //使用Activity过度动画
+                //使用Activity跳转动画
                 overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
             }
         });
 
     }
 
+    /**
+     * 登陆的业务逻辑处理
+     */
     private void checkUser() {
+        //获取用户输入的数据信息
         userAccount = mAccountEt.getText().toString();
         password = mPasswordEt.getText().toString();
+        //非空判断，若为空，则提示用户错误信息
         if (isEmpty(userAccount)){
             mAccountEt.setError("账号不能为空");
             return;
@@ -108,9 +125,20 @@ public class LoginActivity extends AppCompatActivity {
             mPasswordEt.setError("密码不能为空");
             return;
         }
+        /**
+         * 通过轻量级的异步任务来处理网络数据交互的耗时操作，
+         * 不能在主线程中进行网络数据交互，不然会抛出异常
+         * 调用AES辅助类对用户输入的密码进行加密处理
+         */
         new LoginAsyncTask(userAccount, AESUtil.encrypt(AESUtil.KEY,password)).execute(URLManager.USER_LOGIN);
 
     }
+
+    /**
+     * 非空判断，返回一个boolean
+     * @param s
+     * @return
+     */
     private boolean isEmpty(String s){
         if (TextUtils.isEmpty(s)){
             return true;
@@ -140,6 +168,11 @@ public class LoginActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     * 登陆成功后，会将服务器返回的用户数据进行保存
+     * 保存到SQLite数据库中
+     * @param bean 自定义Gson解析json数据类型
+     */
     public void saveUser(JsonBean bean){
         Log.i(TAG,"保存用户数据");
         User u = new User();
@@ -150,6 +183,10 @@ public class LoginActivity extends AppCompatActivity {
         u.setUserIntroduce(bean.getUser().getUserIntroduce());
         u.setUserFansNumber(bean.getUser().getUserFansNumbers());
         u.setUserFocusNumbers(bean.getUser().getUserFocusNumbers());
+        /***
+         * DBUserManager 为SQLite的管理类
+         * 通过调用addUser方法，保存当前登录用户数据
+         */
         DBUserManager manager = new DBUserManager(this);
         boolean b =  manager.addUser(u);
         if (b){
@@ -180,24 +217,30 @@ public class LoginActivity extends AppCompatActivity {
             mView.show(getSupportFragmentManager(),"登陆中");
         }
 
+        /**
+         * 处理网络通讯的耗时操作的方法
+         * @param strings
+         * @return
+         */
         @Override
         protected String doInBackground(String... strings) {
             String s ="";
             try {
+                //通过OkHttp3的辅助工具类的login将用户信息提交到服务器进行数据校验
                 s = OkHttpManager.login(strings[0],account,pwd);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             Log.i(TAG,"登陆用户信息："+s);
+            //对服务器返回的数据信息进行解析
             Gson g = new Gson();
             Type type = new TypeToken<JsonBean>(){}.getType();
             bean = g.fromJson(s,type);
             Log.i(TAG,"解析用户信息："+bean.getMessageInfo().toString());
             Log.i(TAG,"解析用户信息："+bean.getUser().getUserAccount().toString());
             if (bean!=null){
-                saveUser(bean);
+                saveUser(bean);//保存登陆用户的数据信息到SQLite数据库中
             }
-
             return s;
         }
 
@@ -210,6 +253,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 return;
             }else {
+                //通过线程的方式来执行该方法
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -217,9 +261,10 @@ public class LoginActivity extends AppCompatActivity {
                             Thread.sleep(2000);
                             mView.dismiss();
                             Thread.sleep(200);
+                            //通过意图的方式来实现Activity之间的跳转，这里跳转到HomeActivity
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             LoginActivity.this.startActivity(intent);
-                            //使用Activity过度动画
+                            //使用Activity跳转动画
                             overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
                         } catch (InterruptedException e) {
                             e.printStackTrace();

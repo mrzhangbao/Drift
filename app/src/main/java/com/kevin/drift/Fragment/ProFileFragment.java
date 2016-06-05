@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 /**
  * Created by Benson_Tom on 2016/4/27.
+ * 个人界面
  */
 public class ProFileFragment extends BaseFragment implements View.OnClickListener{
     private static final String TAG ="ProFileFragment";
@@ -47,6 +48,7 @@ public class ProFileFragment extends BaseFragment implements View.OnClickListene
         initEvent();
     }
     private void initEvent() {
+        //从SQLite数据库中获取当前登录用户的数据
         DBUserManager manager = new DBUserManager(getActivity());
         user=manager.query();
         Log.i(TAG,"个人界面信息："+manager.query());
@@ -78,8 +80,6 @@ public class ProFileFragment extends BaseFragment implements View.OnClickListene
         mUsername = (TextView) view.findViewById(R.id.my_username);
         mUserAccount = (TextView) view.findViewById(R.id.my_userAccount);
         mUserIcon = (ImageView) view.findViewById(R.id.my_userIcon);
-
-
 
     }
 

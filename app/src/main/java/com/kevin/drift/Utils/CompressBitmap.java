@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Benson_Tom on 2016/5/14.
+ * 图片压缩的工具类
  */
 public class CompressBitmap  implements Transformation {
     @Override

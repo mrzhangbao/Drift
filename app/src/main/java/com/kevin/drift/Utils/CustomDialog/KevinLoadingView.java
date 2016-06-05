@@ -15,6 +15,7 @@ import com.kevin.drift.R;
 
 /**
  * Created by Benson_Tom on 2016/6/1.
+ * 自定义Dialog
  */
 public class KevinLoadingView extends DialogFragment{
 

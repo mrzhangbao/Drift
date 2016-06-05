@@ -3,6 +3,7 @@ package com.kevin.drift.Utils;
 
 /**
  * Created by Benson_Tom on 2016/6/1.
+ * 自定义Gson中的复杂数据解析的实体类
  */
 public class JsonBean {
     public String messageInfo;

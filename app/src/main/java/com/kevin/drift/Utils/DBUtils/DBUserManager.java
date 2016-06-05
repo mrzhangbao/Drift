@@ -10,6 +10,7 @@ import com.kevin.drift.Entity.User;
 
 /**
  * Created by Benson_Tom on 2016/5/26.
+ * SQLite数据库的管理类，用于管理数据增删查改
  */
 public class DBUserManager {
     private static final String TAG = "DBUserManager";
@@ -22,6 +23,11 @@ public class DBUserManager {
         databaseHelper = new DatabaseHelper(context);
     }
 
+    /**
+     * 向SQLite数据库中的user表添加用户数据
+     * @param u
+     * @return
+     */
     public boolean addUser(User u){
         boolean b = false;
         SQLiteDatabase db = null;
@@ -50,6 +56,10 @@ public class DBUserManager {
         return b;
     }
 
+    /**
+     * 查询user表中的用户数据
+     * @return
+     */
     public User query(){
         User user = null;
         SQLiteDatabase db = null;
@@ -70,6 +80,9 @@ public class DBUserManager {
         return  user;
     }
 
+    /**
+     * 删除用户表中的数据
+     */
     public void deleteUser(){
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         Log.i(TAG,"删除了SQLite数据");

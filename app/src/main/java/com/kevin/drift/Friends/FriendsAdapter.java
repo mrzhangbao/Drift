@@ -14,7 +14,6 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kevin.drift.Fragment.SortModel;
 import com.kevin.drift.R;
 
 import java.util.List;
@@ -22,6 +21,7 @@ import java.util.Random;
 
 /**
  * Created by Benson_Tom on 2016/4/3.
+ *好友界面的Recycler适配器
  */
 public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
 
@@ -29,6 +29,11 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
     private Context mContext;
 
 
+    /**
+     * 构造方法，传入好友数据和上下文对象
+     * @param friendsEntities
+     * @param context
+     */
     public FriendsAdapter(List<SortModel> friendsEntities, Context context) {
         mList = friendsEntities;
         mContext = context;
@@ -140,8 +145,6 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
         return mList.get(position).getUserFirstLetter().charAt(0);
     }
 
-
-
     public static Drawable tintDrawable(Drawable drawable, ColorStateList colors) {
         final Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTintList(wrappedDrawable, colors);
@@ -173,9 +176,7 @@ public class FriendsAdapter extends BaseAdapter implements SectionIndexer {
         return Color.parseColor("#00BFFF");
     }
 
-
     final class ViewHolder {
-
         public TextView mTitle;
         public TextView mSortData;
         public TextView mUserIcon;

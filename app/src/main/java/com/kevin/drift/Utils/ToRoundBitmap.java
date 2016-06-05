@@ -9,6 +9,7 @@ import android.graphics.RectF;
 
 /**
  * Created by Benson_Tom on 2016/4/27.
+ * 头像圆形化辅助工具类
  */
 public class ToRoundBitmap {
     public Bitmap toRoundBitmap(Bitmap bitmap){

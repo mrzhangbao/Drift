@@ -29,6 +29,8 @@ import java.util.List;
 
 /**
  * Created by Benson_Tom on 2016/4/22.
+ * 首页的Fragment
+ * 实现了SwipeRefresh下拉刷新接口
  */
 public class WorldFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
     private static final String TAG ="WorldFragment";
@@ -51,18 +53,23 @@ public class WorldFragment extends BaseFragment implements SwipeRefreshLayout.On
 
     }
 
+    /**
+     * 处理业务逻辑
+     * @param view
+     */
     @Override
     protected void initEvent(View view) {
         setHasOptionsMenu(true);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.id_world_recyclerView);
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
         initDatas();
+        //设置下拉刷新过程中的颜色变化
         mRefreshLayout.setColorSchemeResources(R.color.color1,R.color.color2,R.color.color3,R.color.color4);
         mRefreshLayout.setOnRefreshListener(this);
         LinearLayoutManager m = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(m);
         mAdapter = new DriftMessageAdapter(getContext(),mList);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);//设置RecyclerView的适配器
 
     }
 
@@ -77,12 +84,12 @@ public class WorldFragment extends BaseFragment implements SwipeRefreshLayout.On
     private void initDatas() {
         DriftMessageInfo d = null;
         mList = RandomMessage.GetMessage();
-
         new DriftAsyncTask().execute(URLManager.GET_MESSAGE);
     }
 
     @Override
     public void onRefresh() {
+        //下拉刷新后内容的添加
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -94,8 +101,10 @@ public class WorldFragment extends BaseFragment implements SwipeRefreshLayout.On
         }, 3000);
     }
 
+    /**
+     * 通过异步任务从服务器获得消息数据
+     */
     class DriftAsyncTask extends AsyncTask<String,Void,String> {
-
         @Override
         protected String doInBackground(String... strings) {
             String s="";
@@ -108,18 +117,6 @@ public class WorldFragment extends BaseFragment implements SwipeRefreshLayout.On
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//            try {
-////                s=OkHttpManager.Post("http://119.124.20.43:8080/WebServer/TEST",k);
-//                for (int i =0; i< 5;i++){
-////                    Log.i(TAG,"登陆信息:"+OkHttpManager.login("http://119.29.230.231:8080/tx/user_login","7788","hahal"));
-////                    Log.i(TAG,"注册信息:"+bb.toString());
-////                    Log.i(TAG,"注册信息:"+OkHttpManager.Post("http://119.29.230.231:8080/tx/user_register",bb));
-////                    Log.i(TAG,"注册信息:"+OkHttpManager.register("http://119.29.230.231:8080/tx/user_register",u));
-//                }
-//
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
             Log.i(TAG,"消息结果:"+bean.messageInfo);
             Log.i(TAG,"服务器获取信息:"+bean.user);
             return s;

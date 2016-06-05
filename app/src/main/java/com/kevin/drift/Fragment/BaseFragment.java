@@ -3,13 +3,13 @@ package com.kevin.drift.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 /**
  * Created by Benson_Tom on 2016/4/27.
+ * Fragment的基类
  */
 public abstract class BaseFragment extends Fragment{
 

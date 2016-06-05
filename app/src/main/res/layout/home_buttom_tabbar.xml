@@ -43,7 +43,7 @@
             android:id="@+id/id_tabBarFriends_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/tabbar_friends"
+            android:background="@mipmap/tabbar_friends64_nor"
             android:clickable="false"
              />
 

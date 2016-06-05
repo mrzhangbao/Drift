@@ -8,6 +8,7 @@ import android.view.Window;
 
 /**
  * Created by Benson_Tom on 2016/4/22.
+ * 软件加载图片
  */
 public class SplashActivity extends Activity{
 

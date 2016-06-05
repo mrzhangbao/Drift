@@ -2,6 +2,7 @@ package com.kevin.drift.Entity;
 
 /**
  * Created by Benson_Tom on 2016/6/4.
+ * 手机联系人的实体类
  */
 public class MobileContacts {
     private Long id;

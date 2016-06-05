@@ -4,6 +4,7 @@ import android.animation.TypeEvaluator;
 
 /**
  * Created by Benson_Tom on 2016/4/30.
+ * 弹出菜单退出动画
  */
 public class ClickBackAnimator implements TypeEvaluator<Float> {
     private final float s = 1.70158f;

@@ -2,6 +2,7 @@ package com.kevin.drift.Entity;
 
 /**
  * Created by Benson_Tom on 2016/5/26.
+ * 用户的实体类
  */
 public class User {
     private int id;

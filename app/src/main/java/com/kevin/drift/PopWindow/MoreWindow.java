@@ -31,6 +31,7 @@ import com.zhy.android.percent.support.PercentRelativeLayout;
 
 /**
  * Created by Benson_Tom on 2016/4/30.
+ * 弹出菜单，继承了PopupWindow
  */
 public class MoreWindow extends PopupWindow implements View.OnClickListener {
 
@@ -93,6 +94,13 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
         return overlay;
     }
 
+    /**
+     * 显示动画设置
+     * @param view
+     * @param fromY
+     * @param toY
+     * @return
+     */
     @SuppressWarnings("unused")
     private Animation showAnimation1(final View view, int fromY, int toY) {
         AnimationSet set = new AnimationSet(true);
@@ -216,13 +224,11 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
                         @Override
                         public void onAnimationStart(Animator animation) {
                             // TODO Auto-generated method stub
-
                         }
 
                         @Override
                         public void onAnimationRepeat(Animator animation) {
                             // TODO Auto-generated method stub
-
                         }
 
                         @Override
@@ -295,7 +301,6 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
                 break;
         }
     }
-
     public void destroy() {
         if (null != overlay) {
             overlay.recycle();

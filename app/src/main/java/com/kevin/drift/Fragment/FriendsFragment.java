@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import android.view.View;
@@ -14,15 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.promeg.pinyinhelper.Pinyin;
-import com.kevin.drift.Activity.HomeActivity;
 import com.kevin.drift.Activity.MobileContactsActivity;
-import com.kevin.drift.Entity.MobileContacts;
 import com.kevin.drift.Friends.ClearEditText;
 import com.kevin.drift.Friends.PinyinComparator;
 import com.kevin.drift.Friends.SideBar;
 import com.kevin.drift.Friends.FriendsAdapter;
+import com.kevin.drift.Friends.SortModel;
 import com.kevin.drift.R;
-import com.kevin.drift.Utils.GetContacts;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,10 +58,7 @@ public class FriendsFragment extends BaseFragment{
 
     @Override
     protected void initEvent(View view) {
-
         initView(view);
-        List<MobileContacts> l = GetContacts.getLocalContacts(getContext());
-        Log.i(TAG,"联系人："+l.toString());
 
     }
 
@@ -90,14 +84,15 @@ public class FriendsFragment extends BaseFragment{
         });
         mListView = (ListView) v.findViewById(R.id.id_content_listView);
 
-        //Edited here by Kevin at 2016/4/5 15:57;
         //使用模拟数据
         mList = filledDate(getResources().getStringArray(R.array.date));
 
 //        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //通过布局的关联，在ListView中添加头部布局
         LayoutInflater inflater = (LayoutInflater) LayoutInflater.from(getContext());
         headerView = inflater.inflate(R.layout.friends_header,mListView,false);
         mListView.addHeaderView(headerView);
+        //ListView头部控件的监听设置
         setHeaderClick(headerView);
 
         /**
@@ -107,6 +102,7 @@ public class FriendsFragment extends BaseFragment{
         mAdapter = new FriendsAdapter(mList, getActivity());
         mListView.setAdapter(mAdapter);
 
+        //ListView的Item 点击事件的监听处理
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -114,12 +110,12 @@ public class FriendsFragment extends BaseFragment{
             }
         });
 
+        //自定义EditText的控件查找
         mClearEditText = (ClearEditText) v.findViewById(R.id.id_search_clear);
-
+        //自定义EditText的文字改变监听的处理
         mClearEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -130,12 +126,15 @@ public class FriendsFragment extends BaseFragment{
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
 
     }
 
+    /**
+     * ListView的头部控件的监听事件
+     * @param headerView
+     */
     private void setHeaderClick(View headerView) {
         mAddFriends = headerView.findViewById(R.id.id_addFriends_layout);
         mGroupChat = headerView.findViewById(R.id.id_group_layout);
@@ -145,6 +144,7 @@ public class FriendsFragment extends BaseFragment{
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"新朋友",Toast.LENGTH_SHORT).show();
+                //通过意图的方式，跳转到手机联系人界面
                 Intent intent = new Intent(getActivity(), MobileContactsActivity.class);
                 getActivity().startActivity(intent);
                 //使用Activity过度动画
@@ -210,6 +210,4 @@ public class FriendsFragment extends BaseFragment{
         Collections.sort(filterDataList, pinyinComparator);
         mAdapter.updateListView(filterDataList);
     }
-
-
 }

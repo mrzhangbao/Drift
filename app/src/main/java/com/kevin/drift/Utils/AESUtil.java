@@ -12,11 +12,13 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Created by Benson_Tom on 2016/6/4.
+ * AES 加密算法
  */
 public class AESUtil {
     public static final String TAG = "AESUtils";
     public static final String KEY = "AESUtils";
 
+    //加密
     public static String encrypt(String seed, String textContent) {
         // Log.d(TAG, "加密前的seed=" + seed + ",内容为:" + clearText);
         byte[] result = null;
@@ -31,6 +33,7 @@ public class AESUtil {
 
     }
 
+    //解密
     public String decrypt(String seed, String encrypted) {
         // Log.d(TAG, "解密前的seed=" + seed + ",内容为:" + encrypted);
         byte[] rawKey;

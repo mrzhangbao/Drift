@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 /**
  * Created by Benson_Tom on 2016/4/30.
+ * 高斯模糊算法
  */
 public class FastBlur {
 
@@ -209,7 +210,6 @@ public class FastBlur {
                 yi += w;
             }
         }
-
         bitmap.setPixels(pix, 0, w, 0, 0, w, h);
 
         return (bitmap);

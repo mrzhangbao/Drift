@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * Created by Benson_Tom on 2016/5/12.
+ * 随机图片的URL
  */
 public class RandomImageUrl {
 

@@ -2,6 +2,7 @@ package com.kevin.drift.Entity;
 
 /**
  * Created by Benson_Tom on 2016/4/28.
+ * 首页消息的实体类
  */
 public class DriftMessageInfo {
     private String userID;

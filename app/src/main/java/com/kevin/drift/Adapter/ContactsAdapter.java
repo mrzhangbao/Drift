@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kevin.drift.Entity.MobileContacts;
-import com.kevin.drift.Fragment.SortModel;
 import com.kevin.drift.R;
 
 import java.util.List;
@@ -23,6 +22,10 @@ import java.util.Random;
 
 /**
  * Created by Benson_Tom on 2016/4/3.
+ * 手机联系人的适配器
+ * 实现SectionIndexer的接口有两个方法
+ * 1、存放索引提示信息，程序根据通讯录动态生成
+ *2、存放sectionContent的开始的位置
  */
 public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
 
@@ -30,6 +33,11 @@ public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
     private Context mContext;
 
 
+    /**
+     * 构造方法，传入联系人数据和上下文对象
+     * @param m
+     * @param context
+     */
     public ContactsAdapter(List<MobileContacts> m, Context context) {
         mList = m;
         mContext = context;
@@ -54,6 +62,7 @@ public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
     public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
         final MobileContacts mContent = mList.get(i);
+        //内存优化
         if (view == null) {
             viewHolder = new ViewHolder();
             view = LayoutInflater.from(mContext).inflate(R.layout.datesort_item, null);
@@ -80,18 +89,20 @@ public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
         }
         Log.i("TAG", "首字符：" + mList.get(i).getName().substring(0, 1));
         viewHolder.mUserIcon.setText(mList.get(i).getName().substring(0, 1));
+        //设定用户头像
         final Drawable originDrawable = viewHolder.mUserIcon.getBackground();
         viewHolder.mUserIcon.setBackground(tintDrawable(originDrawable, ColorStateList.valueOf(getRandomColor())));
 
+        //设定联系人Display_name
         viewHolder.mSortData.setText(this.mList.get(i).getName());
 
+        //通过匿名内部类的方式实现监听事件
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext,mList.get(i).getName(),Toast.LENGTH_SHORT).show();
             }
         });
-
 
         return view;
     }
@@ -142,7 +153,12 @@ public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
     }
 
 
-
+    /**
+     * 通过Tint的方式对头像进行着色
+     * @param drawable
+     * @param colors
+     * @return
+     */
     public static Drawable tintDrawable(Drawable drawable, ColorStateList colors) {
         final Drawable wrappedDrawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTintList(wrappedDrawable, colors);
@@ -176,7 +192,6 @@ public class ContactsAdapter extends BaseAdapter implements SectionIndexer {
 
 
     final class ViewHolder {
-
         public TextView mTitle;
         public TextView mSortData;
         public TextView mUserIcon;

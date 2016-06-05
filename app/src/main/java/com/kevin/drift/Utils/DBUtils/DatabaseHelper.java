@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by Benson_Tom on 2016/5/26.
+ * SQLite的帮助类
  */
 public class DatabaseHelper extends SQLiteOpenHelper{
 
@@ -19,10 +20,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //创建SQLite数据库中的user表
         db.execSQL("CREATE TABLE user(id integer primary key,userAccount varchar(20),username varchar(20)," +
                 "userIcon varchar(30),userIntroduce varchar(60),userFansNumbers varchar(20),userFocusNumbers varchar(20))");
-//        db.execSQL("CREATE TABLE message(id integer primary key,userAccount varchar(20),username varchar(20)," +
-//                "userIcon varchar(30),userIntroduce varchar(60),userFansNumbers varchar(20),userFocusNumbers varchar(20))");
+
     }
 
     @Override

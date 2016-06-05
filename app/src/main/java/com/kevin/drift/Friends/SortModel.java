@@ -1,4 +1,4 @@
-package com.kevin.drift.Fragment;
+package com.kevin.drift.Friends;
 
 /**
  * Created by Benson_Tom on 2016/4/3.
